@@ -10,6 +10,7 @@ public class Solution {
 
     private static Logger logger = LoggerFactory.getLogger(Solution.class);
 
+    //1
     public int[] twoSum(
         int[] nums,
         int target) {
@@ -32,7 +33,17 @@ public class Solution {
         return new int[]{i, j};
     }
 
-    //直接计算
+    //2
+
+    /**
+     * 计算两数之和
+     * 可能出现很大的数，所以不能转换成 int 再计算
+     *
+     * @param l1
+     * @param l2
+     *
+     * @return
+     */
     public ListNode addTwoNumbers(
         ListNode l1,
         ListNode l2) {
@@ -63,6 +74,7 @@ public class Solution {
         return result.next;
     }
 
+    //3 计算最长字符串长度
     public int lengthOfLongestSubstring(String s) {
 
         int result = 0;
@@ -78,16 +90,58 @@ public class Solution {
                 temp = map.size();
                 map.clear();
             }
-            if (temp > result) {
-                result = temp;
-            }
-
+            result = temp > result ? temp : result;
         }
-        if (map.size() > result) {
-            result = map.size();
-        }
+        result = map.size() > result ? map.size() : result;
 
 
         return result;
+    }
+
+    //4 两个数组的中位数（log(m+n)） 实现的是 n 
+    public double findMedianSortedArrays(
+        int[] nums1,
+        int[] nums2) {
+
+        int[] all = new int[nums1.length + nums2.length];
+
+        int i, j = 0, k = 0;
+
+        // 排序
+        for (i = 0; i < all.length; i++) {
+
+            if (j < nums1.length && k < nums2.length) {
+
+                if (nums1[j] <= nums2[k]) {
+                    all[i] = nums1[j];
+                    j++;
+                } else {
+                    all[i] = nums2[k];
+                    k++;
+                }
+                continue;
+            }
+
+            if (j >= nums1.length && k < nums2.length) {
+                all[i] = nums2[k];
+                k++;
+            }
+            if (j < nums1.length && k >= nums2.length) {
+                all[i] = nums1[j];
+                j++;
+            }
+            System.out.println(all[i]);
+        }
+
+        for (int q = 0; q < all.length; q++) {
+            System.out.println(all[q]);
+        }
+
+        // 查找
+        if (all.length % 2 == 1) {
+            return all[(all.length - 1) / 2];
+        } else {
+            return (double) (all[(all.length - 1) / 2] + all[all.length / 2]) / 2L;
+        }
     }
 }

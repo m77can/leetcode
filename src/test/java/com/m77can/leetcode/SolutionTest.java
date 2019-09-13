@@ -48,4 +48,10 @@ public class SolutionTest {
 
         Assert.assertEquals(solution.lengthOfLongestSubstring("abcabcbb"), 3);
     }
+
+    @Test
+    public void findMedianSortedArrays() {
+
+        Assert.assertEquals(solution.findMedianSortedArrays(new int[]{1, 3}, new int[]{2,4}), 2.0,2);
+    }
 }

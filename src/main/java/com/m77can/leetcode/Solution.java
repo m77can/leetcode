@@ -3,8 +3,7 @@ package com.m77can.leetcode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Solution {
 
@@ -12,8 +11,8 @@ public class Solution {
 
     //1
     public int[] twoSum(
-        int[] nums,
-        int target) {
+            int[] nums,
+            int target) {
 
         int size = nums.length;
         int i = 0;
@@ -41,12 +40,11 @@ public class Solution {
      *
      * @param l1
      * @param l2
-     *
      * @return
      */
     public ListNode addTwoNumbers(
-        ListNode l1,
-        ListNode l2) {
+            ListNode l1,
+            ListNode l2) {
 
         ListNode result = new ListNode(0);
         ListNode p1 = l1;
@@ -98,10 +96,10 @@ public class Solution {
         return result;
     }
 
-    //4 两个数组的中位数（log(m+n)） 实现的是 n 
+    //4 两个数组的中位数（log(m+n)） 实现的是 n
     public double findMedianSortedArrays(
-        int[] nums1,
-        int[] nums2) {
+            int[] nums1,
+            int[] nums2) {
 
         int[] all = new int[nums1.length + nums2.length];
 
@@ -143,5 +141,45 @@ public class Solution {
         } else {
             return (double) (all[(all.length - 1) / 2] + all[all.length / 2]) / 2L;
         }
+    }
+
+    public String longestPalindrome(String s) {
+
+        char[] chars = s.toCharArray();
+        if (chars.length == 1) {
+            return s;
+        }
+        int i, j;
+        int length = 0;
+        char[] result = {};
+        for (i = 0; i < s.length(); i++) {
+            for (j = i + 1; j <= s.length(); j++) {
+                if (judgePalindrome(chars, i, j)) {
+                    if (length <= j - i) {
+                        result = Arrays.copyOfRange(chars, i, j);
+                        length = result.length;
+                    }
+                }
+            }
+        }
+        String s1 = String.valueOf(result);
+        return s1;
+    }
+
+    private boolean judgePalindrome(char[] chars, int i, int j) {
+
+        int length = j - i;
+        if (length == 1) return true;
+
+        j = j - 1;
+        while (i <= j) {
+            if (chars[i] == chars[j]) {
+                i++;
+                j--;
+            } else {
+                break;
+            }
+        }
+        return i > j;
     }
 }

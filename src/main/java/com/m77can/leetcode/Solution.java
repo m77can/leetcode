@@ -182,4 +182,64 @@ public class Solution {
         }
         return i > j;
     }
+
+    //
+    //效率太低
+    public String convert(String s, int numRows) {
+        if (numRows == 1) return s;
+        if (s.length() == 1) return s;
+        if (numRows == 2) {
+
+        }
+        char[] chars = s.toCharArray();
+        char[] result = new char[chars.length];
+        int unit = numRows * 2 - 2;
+
+        int group = s.length() / unit;
+        int mod = s.length() % unit;
+        if (mod > 0) {
+            group++;
+        }
+        //fill matrix
+        List<Character[][]> list = new ArrayList<>();
+        for (int i = 0; i < chars.length; ) {
+            for (int j = 0; j < group; j++) {
+                int currentGroup = (i + 1) / unit;// from 0
+                int currentLocation = i % unit;
+                int currentSize = 0;
+                if (currentGroup == group - 1) {
+                    currentSize = mod == 0 ? unit : mod;
+                } else {
+                    currentSize = unit;
+                }
+                Character[][] characters = new Character[numRows][numRows - 1];
+                for (int k = i - unit * currentGroup; k < currentSize; k++, i++) {
+                    System.out.println(String.format("current k is %s", k));
+                    if (k >= 0 && k < numRows) {
+                        characters[k][0] = chars[i];
+                    }
+                    if (k >= numRows) {
+                        characters[numRows * 2 - k - 2][k - numRows + 1] = chars[i];
+                    }
+                }
+                list.add(characters);
+            }
+        }
+        // Traversing
+        for (int i = 0; i < chars.length; ) {
+            for (int j = 0; j < numRows; j++) {
+                for (int k = 0; k < group; k++) {
+                    Character[][] characters = list.get(k);
+                    for (int z = 0; z < numRows - 1; z++) {
+                        if (characters[j][z] != null) {
+                            result[i] = characters[j][z];
+                            i++;
+                        }
+                    }
+                }
+            }
+
+        }
+        return String.valueOf(result);
+    }
 }

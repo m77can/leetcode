@@ -242,4 +242,77 @@ public class Solution {
         }
         return String.valueOf(result);
     }
+
+    public String convertTry(String s, int numRows) {
+
+        if (numRows == 1) return s;
+        if (s.length() == 1) return s;
+
+        char[] temp = s.toCharArray();
+
+        char[] result = new char[temp.length];
+        int unit = numRows * 2 - 2;
+        int group = s.length() / unit;
+        int mod = s.length() % unit;
+        if (mod > 0) {
+            group++;
+        }
+
+        for (int i = temp.length - 1; i >= 0; ) {
+
+            for (int j = numRows; j > 0; j--) {
+                for (int k = group; k > 0; k--) {
+                    int z = 0;
+
+                    if (k == group) {
+                        z = mod == 0 ? unit : mod - 1;
+                    } else {
+                        z = unit - 1;
+                    }
+                    if (j == numRows) {
+                        if (z < numRows - 1) {
+                            //do nothing
+                        } else {
+                            result[i] = temp[(k - 1) * unit + numRows - 1];
+                            System.out.println(String.format("Current i is %s and value is %s", i, result[i]));
+                            i--;
+                        }
+
+                    } else if (j == 1) {
+                        if (z >= 0) {
+                            result[i] = temp[(k - 1) * unit];
+                            System.out.println(String.format("Current i is %s and value is %s", i, result[i]));
+                            i--;
+                        }
+                    } else {
+                        if (z <= numRows - 1) {
+//                             do nothing
+                            if (z >= j - 1) {
+                                result[i] = temp[(k - 1) * unit + j - 1];
+                                System.out.println(String.format("Current i is %s and value is %s", i, result[i]));
+                                i--;
+                                continue;
+                            }
+
+                        } else if (z > numRows - 1 && unit - z > j - 1) {
+                            result[i] = temp[(k - 1) * unit + j - 1];
+                            System.out.println(String.format("Current i is %s and value is %s", i, result[i]));
+                            i--;
+                        } else if (unit - z <= j - 1) {
+                            result[i] = temp[k * unit - j + 1];
+                            System.out.println(String.format("Current i is %s and value is %s", i, result[i]));
+                            i--;
+                            result[i] = temp[(k - 1) * unit + j - 1];
+                            System.out.println(String.format("Current i is %s and value is %s", i, result[i]));
+                            i--;
+
+                        }
+                    }
+                }
+            }
+        }
+
+
+        return String.valueOf(result);
+    }
 }

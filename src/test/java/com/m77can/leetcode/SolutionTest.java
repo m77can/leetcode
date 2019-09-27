@@ -65,4 +65,15 @@ public class SolutionTest {
 //        Assert.assertEquals("PINALSIGYAHRPI", solution.convert("PAYPALISHIRING", 4) );
         Assert.assertEquals("AB", solution.convert("AB", 2) );
     }
+
+    @Test
+    public void convertTry() {
+        Assert.assertEquals("PINALSIGYAHRPI", solution.convertTry("PAYPALISHIRING", 4) );
+        Assert.assertEquals("AB", solution.convertTry("AB", 2) );
+        Assert.assertEquals("ACB", solution.convertTry("ABC", 2) );
+
+        Assert.assertEquals("ABC", solution.convertTry("ABC", 3) );
+        Assert.assertEquals("ABCED", solution.convertTry("ABCDE", 4) );
+
+    }
 }

@@ -76,4 +76,10 @@ public class SolutionTest {
         Assert.assertEquals("ABCED", solution.convertTry("ABCDE", 4) );
 
     }
+
+    @Test
+    public void reverse() {
+        Assert.assertEquals(-123, solution.reverse(-321) );
+
+    }
 }

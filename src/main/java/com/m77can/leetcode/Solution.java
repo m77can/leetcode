@@ -315,4 +315,16 @@ public class Solution {
 
         return String.valueOf(result);
     }
+
+//    7 reverse int
+    public int reverse(int x) {
+        int sum = 0;
+        while (x != 0) {
+            if ((sum * 10L) > Integer.MAX_VALUE || (sum * 10L) < Integer.MIN_VALUE)
+                return 0;
+            sum = sum * 10 + x % 10;
+            x = x / 10;
+        }
+        return sum;
+    }
 }

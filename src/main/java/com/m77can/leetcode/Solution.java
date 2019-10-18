@@ -316,7 +316,7 @@ public class Solution {
         return String.valueOf(result);
     }
 
-//    7 reverse int
+    //    7 reverse int
     public int reverse(int x) {
         int sum = 0;
         while (x != 0) {
@@ -329,4 +329,17 @@ public class Solution {
     }
 
     //
+
+    public int myAtoi(String str) {
+        char last;
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (c == 48) {
+
+            }
+        }
+        return 0;
+
+
+    }
 }

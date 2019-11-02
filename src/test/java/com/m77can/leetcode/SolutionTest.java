@@ -7,79 +7,89 @@ import java.util.Objects;
 
 public class SolutionTest {
 
-    private Solution solution = new Solution();
+  private Solution solution = new Solution();
 
-    @Test
-    public void twoSum() {
+  @Test
+  public void twoSum() {
 
-        Assert.assertArrayEquals(new Solution().twoSum(new int[]{1, 2, 3, 4}, 5), new int[]{0, 3});
-    }
+    Assert.assertArrayEquals(new Solution().twoSum(new int[]{1, 2, 3, 4}, 5), new int[]{0, 3});
+  }
 
-    @Test
-    public void addTwoNumbers() {
+  @Test
+  public void addTwoNumbers() {
 
-        ListNode l1 = generateListNode(new int[]{2, 4, 3});
-        ListNode l2 = generateListNode(new int[]{5, 6, 4});
-
+    ListNode l1 = generateListNode(new int[]{2, 4, 3});
+    ListNode l2 = generateListNode(new int[]{5, 6, 4});
 
 //        Assert.assertArrayEquals(new Solution().addTwoNumbers(l1,l2));
+  }
+
+
+  private ListNode generateListNode(int[] array) {
+
+    if (Objects.isNull(array)) {
+      throw new RuntimeException("Array can not be null");
     }
 
+    ListNode root = new ListNode(0);
+    ListNode p = root;
 
-    private ListNode generateListNode(int[] array) {
-
-        if (Objects.isNull(array)) {
-            throw new RuntimeException("Array can not be null");
-        }
-
-        ListNode root = new ListNode(0);
-        ListNode p = root;
-
-        for (int i = 0; i < array.length; i++) {
-            p.next = new ListNode(array[i]);
-            p = p.next;
-        }
-
-        return root.next;
+    for (int i = 0; i < array.length; i++) {
+      p.next = new ListNode(array[i]);
+      p = p.next;
     }
 
-    @Test
-    public void lengthOfLongestSubstring() {
+    return root.next;
+  }
 
-        Assert.assertEquals(solution.lengthOfLongestSubstring("abcabcbb"), 3);
-    }
+  @Test
+  public void lengthOfLongestSubstring() {
 
-    @Test
-    public void findMedianSortedArrays() {
+    Assert.assertEquals(solution.lengthOfLongestSubstring("abcabcbb"), 3);
+  }
 
-        Assert.assertEquals(solution.findMedianSortedArrays(new int[]{1, 3}, new int[]{2, 4}), 2.0, 2);
-    }
+  @Test
+  public void findMedianSortedArrays() {
 
-    @Test
-    public void longestPalindrome() {
-        Assert.assertEquals(solution.longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"), "ranynar");
-    }
+    Assert.assertEquals(solution.findMedianSortedArrays(new int[]{1, 3}, new int[]{2, 4}), 2.0, 2);
+  }
 
-    @Test
-    public void convert() {
+  @Test
+  public void longestPalindrome() {
+    Assert.assertEquals(solution.longestPalindrome(
+        "civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth"),
+        "ranynar");
+  }
+
+  @Test
+  public void convert() {
 //        Assert.assertEquals("PINALSIGYAHRPI", solution.convert("PAYPALISHIRING", 4) );
-        Assert.assertEquals("AB", solution.convert("AB", 2) );
-    }
+    Assert.assertEquals("AB", solution.convert("AB", 2));
+  }
 
-    @Test
-    public void convertTry() {
-        Assert.assertEquals("PINALSIGYAHRPI", solution.convertTry("PAYPALISHIRING", 4) );
-        Assert.assertEquals("AB", solution.convertTry("AB", 2) );
-        Assert.assertEquals("ACB", solution.convertTry("ABC", 2) );
+  @Test
+  public void convertTry() {
+    Assert.assertEquals("PINALSIGYAHRPI", solution.convertTry("PAYPALISHIRING", 4));
+    Assert.assertEquals("AB", solution.convertTry("AB", 2));
+    Assert.assertEquals("ACB", solution.convertTry("ABC", 2));
 
-        Assert.assertEquals("ABC", solution.convertTry("ABC", 3) );
-        Assert.assertEquals("ABCED", solution.convertTry("ABCDE", 4) );
+    Assert.assertEquals("ABC", solution.convertTry("ABC", 3));
+    Assert.assertEquals("ABCED", solution.convertTry("ABCDE", 4));
 
-    }
+  }
 
-    @Test
-    public void reverse() {
-        Assert.assertEquals(-123, solution.reverse(-321) );
+  @Test
+  public void reverse() {
+    Assert.assertEquals(-123, solution.reverse(-321));
 
-    }
+  }
+
+  @Test
+  public void myAtoi() {
+//    Assert.assertEquals(42, solution.myAtoi("42"));
+//      Assert.assertEquals(2147483647, solution.myAtoi( "2147483648"));
+      Assert.assertEquals(-2147483648, solution.myAtoi( "-91283472332"));
+
+
+  }
 }

@@ -88,8 +88,14 @@ public class SolutionTest {
   public void myAtoi() {
 //    Assert.assertEquals(42, solution.myAtoi("42"));
 //      Assert.assertEquals(2147483647, solution.myAtoi( "2147483648"));
-      Assert.assertEquals(-2147483648, solution.myAtoi( "-91283472332"));
+    Assert.assertEquals(-2147483648, solution.myAtoi("-91283472332"));
 
+
+  }
+
+  @Test
+  public void isPalindrome() {
+    Assert.assertEquals(false, solution.isPalindrome(-121));
 
   }
 }

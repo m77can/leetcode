@@ -338,7 +338,7 @@ public class Solution {
     return sum;
   }
 
-  //
+  //8
 
   public int myAtoi(String str) {
     long sum = 0;
@@ -404,5 +404,45 @@ public class Solution {
 
     return isNegative ? (int) (sum * -1) : (int) sum;
 
+  }
+
+//  9
+  public boolean isPalindrome(int x) {
+    if (x < 0) {
+      return false;
+    }
+    char[] number = Integer.toString(x).toCharArray();
+
+    if (number.length == 1) {
+      return true;
+    }
+    int i = 0;
+    int j = number.length - 1;
+    while (i <= j) {
+      if (number[i] == number[j]) {
+        i++;
+        j--;
+      } else {
+        break;
+      }
+
+    }
+    return i > j;
+  }
+
+//  9
+  public boolean isPalindrome1(int x) {
+    // 负数肯定不是，以及首尾不对称的非0数
+    if (x < 0 || (x % 10 == 0 && x != 0)) {
+      return false;
+    }
+
+    int rev = 0;
+    while (x > rev) {
+      rev = rev * 10 + x % 10; //将低位一半的数取反。
+      x = (x / 10);
+    }
+    //有rev >= x， 奇数情况下需要除去10
+    return x == rev || x == (rev / 10);
   }
 }
